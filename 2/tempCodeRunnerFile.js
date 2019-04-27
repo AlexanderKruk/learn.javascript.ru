@@ -1,0 +1,1 @@
+console.log(fibonachi(3));
