@@ -1,1 +1,2 @@
-console.log(camelize("background-color") == 'backgroundColor');
+
+        return temp;
