@@ -1,0 +1,1 @@
+console.log(camelize("background-color") == 'backgroundColor');
