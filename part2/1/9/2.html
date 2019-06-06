@@ -1,0 +1,26 @@
+<style>
+  .external {
+    background-color: yellow
+  }
+</style>
+
+<a name="list">список</a>
+<ul>
+  <li><a href="http://google.com">http://google.com</a></li>
+  <li><a href="/tutorial">/tutorial.html</a></li>
+  <li><a href="local/path">local/path</a></li>
+  <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+  <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+  <li><a href="http://internal.com/test">http://internal.com/test</a></li>
+</ul>
+
+<script>
+  var links = document.querySelectorAll('li a');
+  var linksLength = links.length;
+  var regex = new RegExp(/(http|https|ftp):\/\/(?!internal.com)/);
+  for (let i=0; i<linksLength; i++){
+    if(regex.test(links[i].getAttribute('href'))){
+    links[i].classList.add('external');
+  }
+  }
+</script>
