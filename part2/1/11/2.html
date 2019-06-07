@@ -1,0 +1,21 @@
+<div>Это</div>
+<div>Элементы</div>
+
+<script>
+  var elem = document.createElement('div');
+  var elem2 = document.createElement('div');
+  elem.innerHTML = '<b>Новый элемент</b>';
+  elem2.innerHTML = '<b>Новый элемент</b>';
+
+  function insertAfter(elem, refElem) {
+    document.body.insertBefore(elem, refElem.nextSibling);
+  }
+
+  var body = document.body;
+
+  // вставить elem после первого элемента
+  insertAfter(elem, body.firstChild); // <--- должно работать
+
+  // вставить elem за последним элементом
+  insertAfter(elem2, body.lastChild); // <--- должно работать
+</script>

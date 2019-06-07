@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Cоздание списка</h1>
+  <ul id="list"></ul>
+  <script>
+    var text = "empty"
+    while(text.length != 0){
+      text = prompt("Введите текст для пункта списка");
+      var elem = document.createElement('li');
+      elem.textContent = text;
+      if(text.length != 0) {
+        list.appendChild(elem);
+      }
+    }
+  </script>
+</body>
+</html>

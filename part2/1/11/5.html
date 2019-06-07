@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="tree"></div>
+  <script>
+    var data = {
+      "Рыбы": {
+        "Форель": {},
+        "Щука": {}
+      },
+
+      "Деревья": {
+        "Хвойные": {
+          "Лиственница": {},
+          "Ель": {}
+        },
+        "Цветковые": {
+          "Берёза": {},
+          "Тополь": {}
+        }
+      }
+    };
+  
+  var html = "";
+  
+  function getKey(data) {
+  html += '<ul>';
+    for (var key in data){
+      html += '<li>' + key;
+      if (Object.keys(data[key]).length !== 0 && data[key].constructor === Object){
+        getKey(data[key]);
+      } else {
+        html += '</li>';
+      }
+    }
+  html += '</li></ul>';  
+  }
+
+  getKey(data);
+  tree.innerHTML = html;
+  </script>
+</body>
+</html>
+
+  <!-- Результат должен быть таким:
+<div id="tree">
+<ul>
+  <li>Рыбы
+    <ul>
+      <li>Форель</li>
+      <li>Щука</li>
+    </ul>
+  </li>
+  <li>Деревья
+    <ul>
+      <li>Хвойные
+        <ul>
+          <li>Лиственница</li>
+          <li>Ель</li>
+        </ul>
+      </li>
+      <li>Цветковые
+        <ul>
+          <li>Берёза</li>
+          <li>Тополь</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+-->
