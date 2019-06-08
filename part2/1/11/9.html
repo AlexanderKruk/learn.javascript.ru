@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+    #hours {
+      color: red;
+    }
+    #minutes {
+      color: green;
+    }
+    #seconds {
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+
+
+  <input type="button" onclick="clockStart()" value="Start">
+
+  <input type="button" onclick="clockStop()" value="Stop">
+  <div id="clock">
+    <span id="hours">00</span>
+    :
+    <span id="minutes">00</span>
+    :
+    <span id="seconds">00</span>
+  </div>
+  <script>
+    var seconds = 0;
+    var intervalId;
+
+    var span = document.querySelectorAll('span');
+    console.log(span)
+
+    function tiktak(){
+      seconds++;
+      displaySeconds = seconds % 60
+      displayMinutes = ~~((seconds % 3600) / 60)  
+      displayHours = ~~((seconds % 86400) / 3600)  
+      span[2].textContent = addZero(displaySeconds);
+      span[1].textContent = addZero(displayMinutes);
+      span[0].textContent = addZero(displayHours);
+    }
+
+    function addZero(number){
+      if(number < 10) {
+        return "0" + number;
+      }
+      return number;
+    }
+
+    function clockStart() {
+      intervalId = setInterval(tiktak, 1000);
+      tiktak();
+    }
+
+    function clockStop() {
+      clearInterval(intervalId);
+    }
+  </script>
+</body>
+
+</html>

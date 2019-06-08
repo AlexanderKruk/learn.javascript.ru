@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <table>
+      <tbody>
+        <tr>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Отчество</th>
+          <th>Возраст</th>
+        </tr>
+        <tr>
+          <td>Вася</td>
+          <td>Петров</td>
+          <td>Александрович</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Петя</td>
+          <td>Иванов</td>
+          <td>Петрович</td>
+          <td>15</td>
+        </tr>
+        <tr>
+          <td>Владимир</td>
+          <td>Ленин</td>
+          <td>Ильич</td>
+          <td>9</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <script>
+      var rows = document.querySelectorAll('tr');
+      var table = document.querySelector('tbody');
+      arrayRows = Array.from(rows);
+      arrayRows.shift();
+      arrayRows.sort(sortTableAge);
+      
+      for (let i = 0; i < arrayRows.length; i++){
+        table.appendChild(arrayRows[i]);
+      }
+      
+      function sortTableAge(a, b) {
+         return a.lastElementChild.textContent - b.lastElementChild.textContent;
+      }
+    </script>
+</body>
+</html>

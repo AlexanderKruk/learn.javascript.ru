@@ -28,13 +28,76 @@
   <div id="calendar"></div>
 
   <script>
+
     function createCalendar(id, year, month) {
-      var elem = document.getElementById(calendar)
-      
-      
+
+      var date = new Date(year, month-1);
+
+      var dayCount = new Date(year, month,0).getDate();
+      var firstDay = date.getDay();
+
+      var calendar = [];
+
+      var startZeroCount = 0, endZeroCount = 0;
+
+      if(firstDay != 0) {
+        startZeroCount = firstDay - 1;
+      } else {
+        startZeroCount = 6;
+      }
+
+      for(let i=0; i<startZeroCount; i++){
+        calendar.push(0);
+      }
+
+      for(let i=1; i<=dayCount; i++){
+        calendar.push(i);
+      }
+
+      if(calendar.length % 7 != 0){
+        endZeroCount = 7 - (calendar.length % 7)
+      }
+
+      for(let i=0; i<endZeroCount; i++){
+        calendar.push(0);
+      }
+
+      var weekDay = ['пн','вт','cр','чт','пт','сб','вс'];
+
+      var elem = document.getElementById(id);
+
+      var table = document.createElement('table');
+      var tableBody = document.createElement('tbody');
+
+      var row = document.createElement('tr');
+      weekDay.forEach((day) => {
+        var title = document.createElement('th');
+        title.textContent = day;
+        row.appendChild(title);
+      })
+
+      tableBody.appendChild(row);
+
+      for(let i=0; i<calendar.length; i++){
+        if(i % 7 == 0) {
+          if(i){
+            tableBody.appendChild(row2);
+          }
+          var row2 = document.createElement('tr'); 
+        }
+        var data = document.createElement('td');
+        if(calendar[i]){
+          data.textContent = calendar[i];
+        }
+        row2.appendChild(data);
+      }
+
+      tableBody.appendChild(row2);
+      table.appendChild(tableBody);
+      elem.appendChild(table);
     }
 
-    createCalendar('calendar', 2011, 1)
+    createCalendar('calendar', 2019, 6)
   </script>
 </body>
 
