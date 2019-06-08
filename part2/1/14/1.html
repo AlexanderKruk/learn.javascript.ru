@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <div>
+    Кнопка:
+    <!-- создайте элемент и расположите его тут -->
+  </div>
+
+  <script>
+    var link = document.createElement('a');
+    link.href="/";
+    link.textContent = "Нажми меня";
+    link.style.cssText = 
+    `-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    border: 2px groove green;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+    text-decoration: none;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    `
+    var div = document.querySelector('div');
+    div.appendChild(link);
+  </script>
+
+
+</body>
+
+</html>
