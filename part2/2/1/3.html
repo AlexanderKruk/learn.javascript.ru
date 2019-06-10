@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    ul {
+      list-style:none;
+      padding-left: 14px;
+      margin:0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <span id="button"><span id="close">▶</span><span id="open">▼</span>Сладости (нажми меня)!</span>
+  <ul>
+    <li>Торт</li>
+    <li>Пончик</li>
+    <li>Пирожное</li>
+  </ul>
+  <script>
+      let button = document.querySelector('#button');
+      let close = document.querySelector("#close");
+      let open = document.querySelector("#open");
+      let list = document.querySelector("ul");
+
+      list.style.visibility = "hidden";
+      close.style.display = "none";
+
+      button.addEventListener('click', showList);
+      
+      function showList() {
+        if(list.style.visibility  === "hidden") {
+          console.log("ok!");
+          close.style.display = "inline";
+          open.style.display = "none";
+          list.style.visibility = "visible";
+        } else {
+          close.style.display = "none";
+          open.style.display = "inline";
+          list.style.visibility = "hidden";
+        }
+      }
+  </script>
+</body>
+
+</html>
