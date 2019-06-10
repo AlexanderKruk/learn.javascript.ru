@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    blockquote {
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 0 0 0 100px;
+      padding: .5em 10px;
+      quotes: "\201C""\201D""\2018""\2019";
+      display: inline-block;
+      white-space: pre;
+    }
+    button {
+      position: fixed;
+      top: 10px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+    <blockquote>
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+        - Что на завтрак, Бэрримор?
+        - Овсянка, сэр.
+        - А на обед?
+        - Овсянка, сэр.
+        - Ну а на ужин?
+        - Котлеты, сэр.
+        - Уррра!!!
+        - Из овсянки, сэр!!!
+      </blockquote>
+      <button onclick="getDocumentScroll()">Start</button>
+  <script>
+    function getDocumentScroll() {
+      let info = { };
+      var scrollHeight = Math.max(
+        document.body.scrollHeight, document.documentElement.scrollHeight,
+        document.body.offsetHeight, document.documentElement.offsetHeight,
+        document.body.clientHeight, document.documentElement.clientHeight
+      );
+      var box = document.body.getBoundingClientRect();
+      info.top = pageYOffset;
+      info.bottom = pageYOffset + document.documentElement.clientHeight;
+      info.height = scrollHeight;
+      return info;
+    }
+  </script> 
+</body>
+</html>
