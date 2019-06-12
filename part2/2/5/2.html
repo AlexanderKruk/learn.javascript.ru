@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    th {
+      cursor: pointer;
+    }
+
+    th:hover {
+      background: yellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number">Возраст</th>
+        <th data-type="string">Имя</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>Вася</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Петя</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Женя</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Маша</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Илья</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    let thead = document.querySelector('thead');
+    let tbody = document.querySelector('tbody');
+    let trows = document.querySelectorAll('tr');
+    arrayRows = Array.from(trows);
+    arrayRows.shift();
+    
+    thead.addEventListener('click',sortRows);
+
+    function sortRows(event) {
+      let target = event.target;
+      console.log(target.dataset.type);
+      arrayRows.sort(sortNumOrStr(target.cellIndex,target.dataset.type));
+      for (let i = 0; i < arrayRows.length; i++){
+        tbody.appendChild(arrayRows[i]);
+      }
+    }
+
+    function sortNumOrStr(index, type) {
+      if(type == 'number') {
+        return function sortNumber(a, b) {
+                  return a.children[index].textContent - b.children[index].textContent;
+        } 
+      } else if(type == "string") {
+        return function sortString(a, b){
+                  return (a.children[index].textContent).localeCompare(b.children[index].textContent)
+        }
+       }
+    }
+  </script>
+
+</body>
+
+</html>
