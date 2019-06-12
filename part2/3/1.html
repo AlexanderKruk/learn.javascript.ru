@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      position: relative;
+      width: 200px;
+      height: 150px;
+      border: 10px groove black;
+      background-color: #00FF00;
+      overflow: hidden;
+    }
+
+    #dots{
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #ball {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      transition: left .5s ease-in, top .5s ease-in;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Кликните на любое место поля, чтобы мяч перелетел туда.
+  <br> Мяч никогда не вылетит за границы поля.
+
+
+  <div id="field">
+      <span id="dots">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+          . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    </span>
+    <img src="https://js.cx/clipart/ball.svg" id="ball" width="40px" height="40px">
+
+  <script>
+
+    let field = document.querySelector('#field');
+    let ball = document.querySelector('#ball');
+
+    field.addEventListener('click', moveBall);
+
+    function moveBall(event) {
+      let parentPosition = getPosition(event.currentTarget);
+      let xPos = event.clientX - parentPosition.x - (ball.clientWidth / 2);
+      let yPos = event.clientY - parentPosition.y - (ball.clientHeight / 2);
+      
+      if(xPos < parentPosition.x) {
+        xPos = parentPosition.x - (ball.clientWidth / 2);
+
+      } else if(xPos > parentPosition.x + parentPosition.clientHeight){
+        xPos = parentPosition.x + parentPosition.clientHeight - parentPosition.clientLeft;
+      }
+
+      console.log(yPos, parentPosition.clientWidth - parentPosition.y - parentPosition.offsetTop + parentPosition.clientTop);
+
+      if(yPos < parentPosition.y) {
+        yPos = parentPosition.y + parentPosition.clientLeft - parentPosition.offsetTop - (ball.clientHeight / 2);
+      } else if(yPos > parentPosition.clientWidth - parentPosition.y - parentPosition.offsetTop + parentPosition.clientTop){
+        yPos = parentPosition.clientWidth - parentPosition.y - parentPosition.offsetTop + parentPosition.clientTop;
+      }
+
+      ball.style.left = xPos + "px";
+      ball.style.top = yPos + "px";
+    };
+
+    function getPosition(el) {
+      let xPos = 0;
+      let yPos = 0;
+
+      let xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      let yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+      xPos = el.offsetLeft - xScroll + el.clientLeft;
+      yPos = el.offsetTop - yScroll + el.clientTop;
+
+      return {
+        x: xPos,
+        y: yPos,
+        offsetTop: el.offsetTop,
+        offsetLeft: el.offsetLeft,
+        clientTop: el.clientTop,
+        clientLeft: el.clientLeft,
+        clientWidth: el.clientWidth,
+        clientHeight: el.clientHeight
+      }
+    };
+  </script>
+</body>
+
+</html>
