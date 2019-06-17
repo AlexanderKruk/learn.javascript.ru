@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #matrix {
+      width: 400px;
+      margin: auto;
+      overflow: auto;
+      text-align: justify;
+    }
+    #up, #down {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      visibility: hidden;
+    }
+  </style>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <span id="up">▲</span><span id="down">▼</span>
+
+  <div id="matrix">
+    <script>
+      for (var i = 0; i < 2000; i++) document.writeln(i)
+    </script>
+  </div>
+
+  <script>
+    let coords = document.body.getClientRects();
+    let up = document.body.querySelector("#up");
+    let down = document.body.querySelector("#down");
+    let scrollPos = null;
+
+    window.onscroll = function () {
+      var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+      if(scrolled > window.innerHeight){
+        scrollPos = scrolled;
+        up.style.visibility = "visible";
+        down.style.visibility = "hidden";
+      } else {
+        up.style.visibility = "hidden";
+        if(scrollPos){
+          down.style.visibility = "visible"
+        }
+      }
+    }
+
+    up.addEventListener('click', goUp);
+    down.addEventListener('click', goDown);
+
+    function goUp(){
+      window.scrollTo(0,0);
+    }
+
+    function goDown(){
+      window.scrollTo(0,scrollPos);
+    }
+
+  </script>
+</body>
+
+</html>
