@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function runOnKeys(func, ...params) {
+    var map = {}; // You could also use an array
+    window.onkeydown = window.onkeyup = function(e){
+        e = e || event; // to deal with IE
+        map[e.keyCode] = e.type == 'keydown';
+        /* insert conditional here */
+        if([...params].every(isTrue)){
+          func();
+          map = {};
+        }
+
+        function isTrue(element, index, array){
+          return map[element] === true;
+        }
+      }
+    }
+
+    runOnKeys(
+      function() { alert("Привет!") },
+      "Q".charCodeAt(0),
+      "W".charCodeAt(0),
+      "E".charCodeAt(0),
+    );
+  </script>
+</body>
+</html>
