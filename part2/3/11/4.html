@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <script>
+    function addScripts(scripts, callback) {
+      let countScripts = 0;
+      for(let i=0; i<scripts.length; i++){
+        let script = document.createElement('script');
+        script.src = scripts[i];
+        document.body.appendChild(script);
+        script.onload = function() {
+          countScripts++
+          console.log(countScripts);
+          if(countScripts == scripts.length) {
+            callback();
+          }
+        }
+      }
+    }
+
+    // функция a() сработает только если загружены a.js, b.js, c.js
+    addScripts(["4_1.js", "4_2.js", "4_3.js"], function() {
+      a()
+    });
+  </script>
+
+</body>
+
+</html>
