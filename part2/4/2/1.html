@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* стиль для input с плейсхолдером */
+
+    .placeholder {
+      color: blue;
+      font-family: serif;
+    }
+    /* стиль для подсказки над элементом (вместо плейсхолдера при фокусировке) */
+
+    .placeholder-tooltip {
+      color: blue;
+      font-family: serif;
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Красивый placeholder:</p>
+
+  <input type="email" data-placeholder="E-mail">
+
+
+  <script>
+    var input = document.querySelector('[data-placeholder]');
+
+    showPlaceholder(input);
+
+    // Показать placeholder внутри input
+    // Также можно сделать это при помощи вёрстки, отдельным элементом
+    function showPlaceholder(input) {
+      input.classList.add('placeholder');
+      input.value = input.dataset.placeholder;
+    }
+
+    input.onfocus = function(e) {
+      if(input.value == input.dataset.placeholder) {
+        input.value = "";
+        input.style.color = "black";
+      }
+      showTooltip();
+    }
+
+    input.onblur = function() {
+      if(input.value == "") {
+        input.value = input.dataset.placeholder;
+        input.style.color = "blue";
+      }
+      hideTooltip();
+    }
+
+    function showTooltip() {
+      var target  = document.body.querySelector('input');
+      let inputPosition = target.getBoundingClientRect();
+      let tooltip = document.createElement('div');
+      tooltip.className = "placeholder-tooltip";
+      tooltip.innerHTML = target.dataset.placeholder;
+      document.body.appendChild(tooltip);
+      let tooltipPosition = tooltip.getBoundingClientRect();
+      tooltip.style.top = inputPosition.y - tooltipPosition.height + 'px';
+      tooltip.style.left = inputPosition.x + 'px';
+    }
+
+    function hideTooltip() {
+      let tooltip = document.querySelector('.placeholder-tooltip');
+      if(tooltip) {
+        document.body.removeChild(tooltip);
+      }
+    }
+
+  </script>
+
+
+</body>
+
+</html>
