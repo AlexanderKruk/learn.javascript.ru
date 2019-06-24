@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #mouse {
+      position: absolute;
+      display: inline-block;
+      cursor: pointer;
+      margin: 0;
+    }
+
+    #mouse:focus {
+      outline: 1px dashed black;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Кликните на мышонка и передвигайте его, нажимая клавиши со стрелками.</p>
+
+  <pre id="mouse" style="top: 40px; left: 10px;" tabindex="1">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
+
+  <script>
+    var mouse = document.querySelector("#mouse");
+    var size = mouse.getBoundingClientRect();
+    console.log(size);
+
+    mouse.onkeydown = checkKey;
+
+    function checkKey(e) {
+
+      e = e || window.event;
+
+      var top = 0, left = 0;
+
+      if (e.keyCode == '38') {
+        top = mouse.style.top
+        mouse.style.top = parseInt(mouse.style.top) - size.height + 'px';
+      }
+      else if (e.keyCode == '40') {
+        top = mouse.style.top
+        mouse.style.top = parseInt(top) + size.height + 'px';
+      }
+      else if (e.keyCode == '37') {
+        left = mouse.style.left
+        mouse.style.left = parseInt(left) - size.width + 'px';
+      }
+      else if (e.keyCode == '39') {
+        left = mouse.style.left
+        mouse.style.left = parseInt(left) + size.width + 'px';
+      }
+
+    }
+  </script>
+
+</body>
+
+</html>
