@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    td select,
+    td input {
+      width: 150px;
+    }
+
+    #diagram td {
+      vertical-align: bottom;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #diagram div {
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  Калькулятор процентов, из расчёта 12% годовых.
+  <form name="calculator">
+    <table>
+      <tr>
+        <td>Сумма</td>
+        <td>
+          <input type=number name="money" type="text" value="10000">
+        </td>
+      </tr>
+      <tr>
+        <td>Срок в месяцах</td>
+        <td>
+          <select name="months">
+            <option value="3">3 (минимум)</option>
+            <option value="6">6 (полгода)</option>
+            <option value="12" selected>12 (год)</option>
+            <option value="18">18 (1.5 года)</option>
+            <option value="24">24 (2 года)</option>
+            <option value="30">30 (2.5 года)</option>
+            <option value="36">36 (3 года)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>С капитализацией</td>
+        <td>
+          <input name="capitalization" type="checkbox">
+        </td>
+      </tr>
+    </table>
+
+
+  </form>
+
+
+  <table id="diagram">
+    <tr>
+      <th>Было:</th>
+      <th>Станет:</th>
+    </tr>
+    <tr>
+      <th id="money-before"></th>
+      <th id="money-after"></th>
+    </tr>
+    <tr>
+      <td>
+        <div style="background: red;width:40px;height:100px"></div>
+      </td>
+      <td>
+        <div style="background: green;width:40px;height:100px" id="height-after"></div>
+      </td>
+    </tr>
+  </table>
+
+  <script>
+    // вспомогательная функция для получения символа из события keypress
+    // (вдруг понадобится))
+    function getChar(event) {
+      if (event.which == null) {
+        if (event.keyCode < 32) return null;
+        return String.fromCharCode(event.keyCode) // IE
+      }
+
+      if (event.which != 0 && event.charCode != 0) {
+        if (event.which < 32) return null;
+        return String.fromCharCode(event.which) // остальные
+      }
+
+      return null; // специальная клавиша
+    }
+
+    var moneyBefore = document.getElementById('money-before');
+    var moneyAfter = document.getElementById('money-after');
+    var heightAfter = document.getElementById('height-after');
+
+    var money  = document.querySelector('input[name="money"]');
+    var capitalization = document.querySelector('input[name="capitalization"]');
+    var months = document.querySelector('select[name="months"]');
+
+    calculatePercent();
+
+    money.oninput = capitalization.oninput = months.oninput = function() {
+      calculatePercent();
+    }
+
+    function calculatePercent() {
+      moneyBefore.textContent = money.value;
+      if(capitalization.checked) {
+        moneyAfter.textContent = Math.round(money.value * Math.pow((1 + 0.12 / months.value), months.value));
+      } else {
+        moneyAfter.textContent = Math.round(money.value * (1 + (months.value / 12) * 0.12));
+      }
+      heightAfter.style.height = (100 + 100 * (moneyAfter.textContent - moneyBefore.textContent) / moneyBefore.textContent) + 'px';
+    }
+  </script>
+
+
+</body>
+
+</html>
