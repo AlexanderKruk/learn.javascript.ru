@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="5.css">
+</head>
+
+<body>
+
+
+  <div>Добро пожаловать</div>
+  <input type="password" id="input">
+
+  <div id="placeholder">Скажи пароль, друг</div>
+
+  <div>.. и заходи</div>
+  <script>
+    var placeholder = document.querySelector("#placeholder");
+    var input = document.querySelector("#input");
+
+    input.onfocus = placeholder.onclick = function() {
+      placeholder.style.visibility = "hidden";
+    }
+  </script>
+</body>
+
+</html>
