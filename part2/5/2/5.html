@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
+  <style>
+    .voter {
+      font-family: 'DejaVu Sans Mono', 'Lucida Console', 'Menlo', 'Monaco', monospace;
+      font-size: 18px;
+    }
+
+    .up,
+    .down {
+      cursor: pointer;
+      color: blue;
+      font-weight: bold;
+    }
+
+    body{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+  </style>
+</head>
+
+<body>
+
+  <div id="voter" class="voter">
+    <span class="down">—</span>
+    <span class="vote">0</span>
+    <span class="up">+</span>
+  </div>
+
+  <script>
+    function Voter(options) {
+      this.div = options.elem;
+      this.displayVote = this.div.querySelector(".vote")
+      this.currentVote = this.displayVote.textContent;
+      this.div.onclick = this._onClick.bind(this);
+    }
+
+    Voter.prototype._onClick = function(e) {
+      if (e.target.classList.contains("down")){
+        console.log("down");
+        this.setVote(--this.currentVote);
+      } else if (e.target.classList.contains("up"))  {
+        console.log("up");
+        this.setVote(++this.currentVote);
+      };        
+    }
+
+    Voter.prototype.setVote = function(vote) {
+      this.currentVote = this.displayVote.textContent = vote;
+    }
+
+
+    var voter = new Voter({
+      elem: document.getElementById('voter')
+    });
+
+    voter.setVote(1);
+  </script>
+
+</body>
+
+</html>
