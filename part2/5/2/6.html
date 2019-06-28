@@ -56,9 +56,25 @@
       this.currentVote = this.displayVote.textContent = vote;
     }
 
+    function StepVoter(options) {
+      Voter.apply(this, arguments);
+      this.step = options.step;
+    }
 
-    var voter = new Voter({
-      elem: document.getElementById('voter')
+    StepVoter.prototype = Object.create(Voter.prototype);
+
+    StepVoter.prototype._onClick = function(e) {
+      if (e.target.classList.contains("down")){
+        this.setVote(this.currentVote - this.step);
+      } else if (e.target.classList.contains("up"))  {
+        this.setVote(this.currentVote + this.step);
+      };        
+    }
+
+
+    var voter = new StepVoter({
+      elem: document.getElementById('voter'),
+      step: 2
     });
 
     voter.setVote(1);
