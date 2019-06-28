@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Часики</title>
+  <meta charset="utf-8">
+  <style>
+    .hour {
+      color: green
+    }
+
+    .min {
+      color: blue
+    }
+
+    .sec {
+      color: red
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="clock" class="clock">
+    <span class="hour">00</span>:<span class="min">00</span>:<span class="sec">00</span>
+  </div>
+
+  <script>
+    function Clock(options) {
+      var elem = options.elem;
+
+      var intervalId;
+      var date, seconds, minutes, hour, seconds;
+
+      var span = elem.querySelectorAll('span');
+
+      function tiktak() {
+        timeInitialization();
+        seconds++;
+        displaySeconds = seconds % 60
+        displayMinutes = ~~((seconds % 3600) / 60)  
+        displayHours = ~~((seconds % 86400) / 3600)  
+        span[2].textContent = addZero(displaySeconds);
+        span[1].textContent = addZero(displayMinutes);
+        span[0].textContent = addZero(displayHours);
+      }
+
+      function timeInitialization() {
+        date = new Date;
+        seconds = date.getSeconds();
+        minutes = date.getMinutes();
+        hour = date.getHours();
+        seconds = hour * 3600 + minutes * 60 + seconds;
+      }
+
+      function addZero(number){
+        if(number < 10) {
+          return "0" + number;
+        }
+        return number;
+      }
+
+      function clockStart() {
+        intervalId = setInterval(tiktak, 1000);
+        tiktak();
+      }
+
+      function clockStop() {
+        clearInterval(intervalId);
+      }
+
+      this.start = clockStart;
+      this.stop = clockStop;
+
+    }
+
+    var pageClock = new Clock({
+      elem: document.getElementById('clock')
+    });
+  </script>
+
+  <input type="button" onclick="pageClock.start()" value="Старт">
+  <input type="button" onclick="pageClock.stop()" value="Стоп">
+
+  <input type="button" onclick="alert('Часы должны останавливаться во время alert,\nи продолжать корректно работать после нажатия на ОК')" value="alert для проверки корректного возобновления">
+
+</body>
+
+</html>
